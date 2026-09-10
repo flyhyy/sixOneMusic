@@ -1,0 +1,73 @@
+name: six-music
+
+services:
+  go-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: backend
+    expose:
+      - "8061"
+    volumes:
+      - type: volume
+        source: backend-data
+        target: /app/data
+      - type: bind
+        source: C:/Users/47211/Desktop/OpenCode/music
+        target: /app/music
+    networks:
+      - six-network
+    healthcheck:
+      # 容器内执行的检查命令；返回非零状态时视为不健康。
+      test: ["CMD-SHELL", "nc -z 127.0.0.1 8061"]
+      # 相邻两次健康检查之间的等待时间。
+      interval: 10s
+      # 单次健康检查允许的最长执行时间。
+      timeout: 3s
+      # 连续失败达到该次数后，服务状态会标记为 unhealthy。
+      retries: 5
+      # 启动初期的宽限时间；在此期间失败不会计入 retries。
+      start_period: 10s
+    restart: unless-stopped
+
+  # 网页
+  web-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: frontend
+    ports:
+      - "8080:80"
+    networks:
+      - six-network
+    depends_on:
+      go-backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+networks:
+  six-network:
+    driver: bridge
+volumes:
+  backend-data:
+    driver: local
+
+# 运行命令
+# 后台运行（最常用）：  docker compose up -d
+
+# 前台运行（适合调试）： docker compose up
+
+# 强制重新构建并启动： docker compose up -d --build
+
+# 查看状态与日志
+
+#  查看正在运行的容器：  docker compose ps
+
+# 查看实时滚动日志：  docker compose logs -f
+# 如果只想看单个服务（比如后端）的日志，可以在后面加上服务名：docker compose logs -f go-backend。
+
+# 停止服务
+#  停止并移除容器和网络（最常用）：  docker compose down
+
+# 停止并彻底删除数据卷（🚨 慎用）： docker compose down -v
+# 这不仅会删掉容器，还会把你配置的 backend-data 等命名卷一起删除，导致数据库数据丢失。
