@@ -3,6 +3,10 @@ export interface LoginFormData {
     password: string
 }
 
+export interface RegisterFormData extends LoginFormData {
+    confirmPassword: string
+}
+
 export interface ResponseLogin {
     token: string
 }
