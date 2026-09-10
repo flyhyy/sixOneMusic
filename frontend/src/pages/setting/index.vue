@@ -29,7 +29,7 @@
 
     <div class="flex justify-center">
 
-        <BasicButton>退出登陆</BasicButton>
+        <BasicButton @click="onLogout">退出登陆</BasicButton>
     </div>
 
 </template>
@@ -41,6 +41,15 @@ import SettingCard from './components/card.vue'
 import SettingRow from './components/row.vue'
 import FolderPathList from './components/folderPathList.vue'
 import { ref } from 'vue';
+import { useToast } from 'vue-toastification';
+import { logout } from '@/utils/logout';
+
+const toast = useToast()
 
 const version = ref(__APP_VERSION__)
+
+// 退出登录
+const onLogout = () => {
+    toast.success('退出成功', { timeout: 1200, onClose: () => logout() })
+}
 </script>

@@ -1,4 +1,5 @@
 import { getToken } from '@/storage/token';
+import { logout } from '@/utils/logout';
 import axios from 'axios';
 
 import type { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios';
@@ -50,7 +51,8 @@ instance.interceptors.response.use((response: AxiosResponse<ApiResponse>) => {
     }
 
     if (code === 401) {
-
+        logout()
+        return Promise.reject(msg || '登录已过期，请重新登录')
     }
 
     return Promise.reject(msg || 'Error')
@@ -65,7 +67,7 @@ instance.interceptors.response.use((response: AxiosResponse<ApiResponse>) => {
         switch (error.response.status) {
             case 401:
                 errorMessage = '登录已过期，请重新登录';
-                // 清除 token 并跳转等...
+                logout();
                 break;
             case 403:
                 errorMessage = '拒绝访问 (403)';

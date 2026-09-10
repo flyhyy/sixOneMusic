@@ -21,7 +21,8 @@ func GenerateToken(userId uint, userName string) (string, error) {
 		UserID:   userId,
 		UserName: userName,
 		RegisteredClaims: jwt.RegisteredClaims{
-			// ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
+			// token 有效期 7 天，过期后前端收到 401 会跳转登录页
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(7 * 24 * time.Hour)),
 			IssuedAt: jwt.NewNumericDate(time.Now()),
 			Issuer:   "fnMusic",
 		},
