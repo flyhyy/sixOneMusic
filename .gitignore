@@ -1,32 +1,32 @@
 /music/
 
-./backend/music/
-./backend/tmp/
+/backend/music/
+/backend/tmp/
+/backend/data/
 
 # Ignore Go debug executables
-./backend/cmd/__debug_bin.exe*
-./backend/cmd/__debug_bin*
+/backend/cmd/__debug_bin.exe*
+/backend/cmd/__debug_bin*
 
-
-./fronted/logs
-./fronted/*.log
-./fronted/npm-debug.log*
-./fronted/yarn-debug.log*
-./fronted/yarn-error.log*
-./fronted/pnpm-debug.log*
-./fronted/lerna-debug.log*
-./fronted/node_modules
-./fronted/dist
-./fronted/dist-ssr
-./fronted/*.local
+/frontend/logs
+/frontend/*.log
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+/frontend/pnpm-debug.log*
+/frontend/lerna-debug.log*
+/frontend/node_modules
+/frontend/dist
+/frontend/dist-ssr
+/frontend/*.local
 
 # Editor directories and files
-./fronted/.vscode/*
-./fronted/!.vscode/extensions.json
-./fronted/.idea
-./fronted/.DS_Store
-./fronted/*.suo
-./fronted/*.ntvs*
-./fronted/*.njsproj
-./fronted/*.sln
-./fronted/*.sw?
+/frontend/.vscode/*
+/frontend/!.vscode/extensions.json
+/frontend/.idea
+/frontend/.DS_Store
+/frontend/*.suo
+/frontend/*.ntvs*
+/frontend/*.njsproj
+/frontend/*.sln
+/frontend/*.sw?

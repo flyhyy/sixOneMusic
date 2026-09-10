@@ -1,0 +1,17 @@
+# Version-control and editor files
+.git
+.gitignore
+.vscode
+.air.toml
+
+# Local runtime data: supplied by the persistent Docker volume at /app/data
+data
+cmd/data
+music
+tmp
+
+# Build/test artifacts
+myapp
+*.exe
+*.test
+coverage.out

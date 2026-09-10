@@ -1,0 +1,6 @@
+music/
+tmp/
+
+# Ignore Go debug executables
+cmd/__debug_bin.exe*
+cmd/__debug_bin*

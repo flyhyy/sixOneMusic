@@ -1,0 +1,21 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "启动 fnMusic 服务",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            // 指向你项目的入口文件所在目录，或者具体的 main.go 文件
+            "program": "${workspaceFolder}/cmd/main.go",
+            // 确保工作目录在项目根目录，这样读取 data/nas_music.db 等相对路径才不会报错
+            "cwd": "${workspaceFolder}",
+            // 如果你的服务需要特定的环境变量，可以加在这里
+            "env": {},
+            "showLog": true
+        }
+    ]
+}
