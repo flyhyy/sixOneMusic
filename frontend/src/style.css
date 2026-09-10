@@ -99,3 +99,21 @@ body {
     display: none !important;
   }
 }
+
+/* ===== Toast 弹窗：颜色适配项目主题 ===== */
+.Vue-Toastification__toast--default,
+.Vue-Toastification__toast--info,
+.Vue-Toastification__toast--success {
+  background-color: var(--brand);
+  color: #fff;
+}
+
+.Vue-Toastification__toast--warning {
+  background-color: #f59e0b;
+  color: #fff;
+}
+
+.Vue-Toastification__toast--error {
+  background-color: #ef4444;
+  color: #fff;
+}

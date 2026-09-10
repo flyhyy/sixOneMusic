@@ -3,6 +3,7 @@
 /backend/music/
 /backend/tmp/
 /backend/data/
+/backend/cmd/data/
 
 # Ignore Go debug executables
 /backend/cmd/__debug_bin.exe*
