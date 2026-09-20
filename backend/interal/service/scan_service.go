@@ -110,6 +110,10 @@ func (s *ScanSerImpl) Scan(targetDirs []string) {
 	}
 	for _, dir := range targetDirs {
 		wg.Add(1)
+		// 判断是否是绝对路径
+		if filepath.IsAbs(dir) {
+			rootDir = ""
+		}
 		go ScanDir(rootDir, dir, musicFileChan, &wg)
 	}
 
