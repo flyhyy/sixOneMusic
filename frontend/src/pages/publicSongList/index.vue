@@ -7,36 +7,40 @@
 
 <template>
 
-    <TitleInfo :icon-name="Icons.sidePlayQueue" :title="currentConfig?.title || ''" size="large">
+    <div class="flex h-full min-h-0 flex-col">
 
-    </TitleInfo>
+        <TitleInfo :icon-name="Icons.sidePlayQueue" :title="currentConfig?.title || ''" size="large">
 
-    <div class="flex items-center mt-6 gap-2">
-        <PlayButton v-for="item in currentConfig?.buttons || []" @click="item.fn()" :icon-name="item.iconName">
-            {{ item.name }}
-        </PlayButton>
+        </TitleInfo>
 
-        <span class="ml-auto text-muted text-[13px]">
-            共{{ songsList.length }}首 {{ totalTime }}
-        </span>
+        <div class="flex items-center mt-6 gap-2">
+            <PlayButton v-for="item in currentConfig?.buttons || []" @click="item.fn()" :icon-name="item.iconName">
+                {{ item.name }}
+            </PlayButton>
 
-    </div>
+            <span class="ml-auto text-muted text-[13px]">
+                共{{ songsList.length }}首 {{ totalTime }}
+            </span>
 
-    <!-- 空数据提示 -->
-    <!-- <EmptyData :icon-name="Icons.sideMyPlayList">
-        收藏为空
-        <template #other>
-            <PlayButton :icon-name="Icons.compass" @click="onJumpDiscoverPage">去发现音乐</PlayButton>
-        </template>
-</EmptyData> -->
-    <!-- 有数据处理 -->
-    <div class="mt-4">
-        <SongCard v-for="(item, index) in songsList" :album="item.album_name" :cover-src="item.cover_path"
-            :isCollect="item.is_collect" :singer="item.singer"
-            :is-play="audioStore.currentMusicId === item.id && audioStore.audioPlayState" :song-name="item.title"
-            :time="item.duration" :index="index + 1" @play="onPlay(item, $event)" @addPlayQueue="onAddPlayQueue(item)"
-            @collect="musicStore.collecHandler(item)" @addPlayList="onAddPlayList(item, $event)">
-        </SongCard>
+        </div>
+
+        <!-- 空数据提示 -->
+        <!-- <EmptyData :icon-name="Icons.sideMyPlayList">
+            收藏为空
+            <template #other>
+                <PlayButton :icon-name="Icons.compass" @click="onJumpDiscoverPage">去发现音乐</PlayButton>
+            </template>
+    </EmptyData> -->
+        <!-- 有数据处理 -->
+        <div class="mt-4 min-h-0 flex-1 overflow-y-auto">
+            <SongCard v-for="(item, index) in songsList" :album="item.album_name" :cover-src="item.cover_path"
+                :isCollect="item.is_collect" :singer="item.singer"
+                :is-play="audioStore.currentMusicId === item.id && audioStore.audioPlayState" :song-name="item.title"
+                :time="item.duration" :index="index + 1" @play="onPlay(item, $event)" @addPlayQueue="onAddPlayQueue(item)"
+                @collect="musicStore.collecHandler(item)" @addPlayList="onAddPlayList(item, $event)">
+            </SongCard>
+        </div>
+
     </div>
 
 
