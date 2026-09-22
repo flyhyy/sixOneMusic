@@ -1,5 +1,5 @@
 import type { MusicBase } from "@/pages/publicSongList/index.vue";
-import { useAudioPlayUtil } from "@/utils/auido/audioPlay";
+import { useAudioPlayUtil, destroyAudioPlay } from "@/utils/auido/audioPlay";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
@@ -39,6 +39,13 @@ export const useAudioStore = defineStore("audio", () => {
         audioPlayState.value = state
     }
 
+    // 重置播放状态（退出登录时调用）
+    function reset() {
+        currentMusicId.value = null
+        audioPlayState.value = false
+        destroyAudioPlay()
+    }
+
     audioPlayUtil.initHooks(() => setAudioPlayState(true), () => setAudioPlayState(false))
 
 
@@ -50,7 +57,8 @@ export const useAudioStore = defineStore("audio", () => {
         randomPlay,
         pause,
         setAudioPlayState,
-        setAudioList
+        setAudioList,
+        reset
     }
 
 })
