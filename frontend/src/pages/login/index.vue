@@ -2,15 +2,15 @@
   <div class="bg-linear-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460]  h-screen flex items-center ">
     <section
       class="w-[80%] box-border  border border-[rgba(255,255,255,0.1)] sm:w-125 m-auto p-6  bg-[rgba(255,255,255,0.07)] rounded-xl shadow-[0_20px_60px_rgba(0,0,0,0.4)]   ">
-      <div
-        class="w-20 h-20 rounded-xl   bg-linear-to-br from-[#e94560] to-[#f6b17a] flex  justify-center items-center m-auto">
-        <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff">
-          <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" />
-        </svg>
+      <div class="flex justify-center items-center text-2xl font-extrabold tracking-tight">
+        <span class="text-brand flex items-center">
+          <Icon :name="iconMusicNote" class="mr-0.5"></Icon>
+          SixOne
+        </span>
+        <span class="text-white font-normal">
+          Music
+        </span>
       </div>
-      <h5 class="tracking-[2px]   text-white text-xl font-bold text-center mt-4">
-        六一音乐
-      </h5>
 
       <!-- 登录 / 注册切换 -->
       <div class="flex justify-center mt-6 mb-1">
@@ -81,10 +81,13 @@ import Schema, { type Rules, type ValidateError } from 'async-validator';
 import { useToast } from 'vue-toastification';
 import { useRouter } from 'vue-router';
 import { setToken } from '@/storage/token.ts';
+import { Icons } from '@/config/icons.ts';
 
 const toast = useToast()
 
 const router = useRouter()
+
+const iconMusicNote = Icons.headerMusicNote
 
 type Mode = 'login' | 'register'
 
