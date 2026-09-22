@@ -1,6 +1,6 @@
 <template>
     <Transition>
-        <div class="absolute bottom-0 w-full">
+        <div class="fixed bottom-0 w-full">
             <!-- 1. 使用 max-height 和 opacity 控制动画，确保方向严格垂直向下 -->
             <Transition enter-active-class="transition-all duration-300 ease-out origin-bottom"
                 enter-from-class="max-h-0 opacity-0" enter-to-class="max-h-[150px] opacity-100"
@@ -66,7 +66,7 @@
                         <!-- 当前时间 -->
                         <span class="shrink-0 text-center text-sm text-muted">{{
                             currentDuration
-                            }}</span>
+                        }}</span>
 
                         <!-- 轨道背景 -->
                         <SlideRail v-model="currentProgress" @drag-start="onProgressDragStart"
@@ -75,7 +75,7 @@
                         <!-- 总时间 -->
                         <span class="shrink-0 text-center text-sm text-muted">{{
                             totalDuration
-                            }}</span>
+                        }}</span>
                     </div>
                 </div>
                 <!--  歌词,收藏,音量控制 -->
