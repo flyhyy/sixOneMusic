@@ -48,7 +48,7 @@
 import { Icons } from "@/config/icons";
 import { usePlayListStore } from "@/store/playList";
 import { storeToRefs } from "pinia";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
 export interface PlayListItemBase {
@@ -68,6 +68,11 @@ const playListName = ref("");
 
 const router = useRouter()
 const showCreatePlayListInput = ref<boolean>(false);
+
+// 每次进入（含退出后重新登录）都重新拉取歌单列表
+onMounted(() => {
+  playListStore.getPlayList()
+})
 
 const onPlayListItem = (item: PlayListItem) => {
 
