@@ -23,7 +23,7 @@ addCollection(systemUiconsIcons);
 
 const pinia = createPinia()
 const options: PluginOptions = {
-
+  timeout: 300
 }
 
 
