@@ -50,6 +50,6 @@ const version = ref(__APP_VERSION__)
 
 // 退出登录
 const onLogout = () => {
-    toast.success('退出成功', { timeout: 1200, onClose: () => logout() })
+    toast.success('退出成功', { onClose: () => logout() })
 }
 </script>
