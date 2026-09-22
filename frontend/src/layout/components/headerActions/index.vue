@@ -21,6 +21,8 @@
 import { Icons } from '@/config/icons';
 import { useThemeStore } from '@/store/theme';
 import { ref } from 'vue';
+import { useToast } from 'vue-toastification';
+import { logout } from '@/utils/logout';
 
 interface Icon {
 
@@ -28,11 +30,12 @@ interface Icon {
     active?: string,
     link?: string,
     title: string
-    type?: 'theme' | 'link'
+    type?: 'theme' | 'link' | "logout"
 
 }
 
 const themeStore = useThemeStore()
+const toast = useToast()
 
 const icons = ref<Icon[]>([
     {
@@ -43,8 +46,13 @@ const icons = ref<Icon[]>([
     }, {
         base: Icons.github,
         title: '跳转到GitHub',
-        link: '',
+        link: 'https://github.com/flyhyy/sixOneMusic',
         type: 'link'
+    }, {
+        base: Icons.logout,
+        title: "退出登录",
+        link: "",
+        type: "logout"
     }
 ])
 
@@ -52,6 +60,7 @@ const getIcon = (item: Icon) => {
     if (item.type === 'theme' && themeStore.isDark()) {
         return item.active || item.base
     }
+
     return item.base
 }
 
@@ -67,6 +76,11 @@ const onClick = (item: Icon) => {
         themeStore.toggleTheme()
     } else if (item.link) {
         window.open(item.link, '_blank')
+    } else if (item.type === "logout") {
+
+        toast.success('退出成功', { timeout: 1000, onClose: () => logout() })
+
+
     }
 }
 
