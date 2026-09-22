@@ -133,6 +133,10 @@ const router = createRouter({
 router.beforeEach((to) => {
 
 
+    if (!getToken() && to.path === "/") {
+        return true
+    }
+
     if (!getToken() && to.path != "/" && to.path != "/login") {
         return { path: "/" }
     }
