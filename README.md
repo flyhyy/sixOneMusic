@@ -48,7 +48,7 @@ sixOneMusic/
 
 1. **准备音乐目录**
 
-   在宿主机准备一个存放音乐的文件夹，例如 `C:/Users/47211/Desktop/OpenCode/music`（Windows）或 `/volume1/music`（NAS）。
+   在宿主机准备一个存放音乐的文件夹，例如 `C:/xxxx/music`（Windows）或 `/volume1/music`（NAS）。
 
 2. **修改 `docker-compose.yml` 中的音乐目录挂载**
 
@@ -57,7 +57,7 @@ sixOneMusic/
      go-backend:
        volumes:
          - type: bind
-           source: C:/Users/47211/Desktop/OpenCode/music   # 改为你的音乐目录
+           source: C:/xxxx/music # 改为你的音乐目录 ,绝对路径
            target: /app/music
    ```
 
@@ -152,62 +152,62 @@ npm run build       # 类型检查 + 生产构建
 
 ### 认证
 
-| 方法 | 路径 | 说明 |
-| --- | --- | --- |
+| 方法 | 路径                 | 说明                                             |
+| ---- | -------------------- | ------------------------------------------------ |
 | POST | `/api/auth/register` | 注册（公开），body：`{ "userName", "password" }` |
-| POST | `/api/auth/login` | 登录（公开），返回 `{ "token" }` |
+| POST | `/api/auth/login`    | 登录（公开），返回 `{ "token" }`                 |
 
 ### 文件路径
 
-| 方法 | 路径 | 说明 |
-| --- | --- | --- |
-| GET | `/api/folder/query` | 查询已配置路径 |
-| POST | `/api/folder/write` | 写入路径，body：`[{ "id": null, "path": "/app/music" }]` |
-| DELETE | `/api/folder/del?id=<id>` | 删除路径 |
+| 方法   | 路径                      | 说明                                                     |
+| ------ | ------------------------- | -------------------------------------------------------- |
+| GET    | `/api/folder/query`       | 查询已配置路径                                           |
+| POST   | `/api/folder/write`       | 写入路径，body：`[{ "id": null, "path": "/app/music" }]` |
+| DELETE | `/api/folder/del?id=<id>` | 删除路径                                                 |
 
 ### 扫描
 
-| 方法 | 路径 | 说明 |
-| --- | --- | --- |
-| GET | `/api/scan/handler` | 开始扫描（扫描所有已配置路径） |
-| GET | `/api/scan/status` | 查询扫描状态 |
+| 方法 | 路径                | 说明                           |
+| ---- | ------------------- | ------------------------------ |
+| GET  | `/api/scan/handler` | 开始扫描（扫描所有已配置路径） |
+| GET  | `/api/scan/status`  | 查询扫描状态                   |
 
 ### 音乐 / 收藏
 
-| 方法 | 路径 | 说明 |
-| --- | --- | --- |
-| GET | `/api/music/all?page=1&pageSize=20` | 分页获取全部歌曲 |
-| PUT | `/api/music/collect` | 收藏 / 取消收藏，body：`{ "songId", "isCollect" }` |
-| GET | `/api/music/collectSongs` | 获取当前用户收藏 |
+| 方法 | 路径                                | 说明                                               |
+| ---- | ----------------------------------- | -------------------------------------------------- |
+| GET  | `/api/music/all?page=1&pageSize=20` | 分页获取全部歌曲                                   |
+| PUT  | `/api/music/collect`                | 收藏 / 取消收藏，body：`{ "songId", "isCollect" }` |
+| GET  | `/api/music/collectSongs`           | 获取当前用户收藏                                   |
 
 ### 歌单
 
-| 方法 | 路径 | 说明 |
-| --- | --- | --- |
-| POST | `/api/playList/add` | 新建歌单，body：`{ "name" }` |
-| GET | `/api/playList/queryList` | 歌单列表 |
-| DELETE | `/api/playList/del/:id` | 删除歌单 |
-| PUT | `/api/playList/update` | 重命名歌单，body：`{ "id", "name" }` |
-| POST | `/api/playList/addSong` | 添加歌曲到歌单 |
-| GET | `/api/playList/getSongs/:id` | 获取歌单内歌曲 |
+| 方法   | 路径                         | 说明                                 |
+| ------ | ---------------------------- | ------------------------------------ |
+| POST   | `/api/playList/add`          | 新建歌单，body：`{ "name" }`         |
+| GET    | `/api/playList/queryList`    | 歌单列表                             |
+| DELETE | `/api/playList/del/:id`      | 删除歌单                             |
+| PUT    | `/api/playList/update`       | 重命名歌单，body：`{ "id", "name" }` |
+| POST   | `/api/playList/addSong`      | 添加歌曲到歌单                       |
+| GET    | `/api/playList/getSongs/:id` | 获取歌单内歌曲                       |
 
 ### 分类浏览
 
-| 方法 | 路径 | 说明 |
-| --- | --- | --- |
-| GET | `/api/style/list` | 曲风列表 |
-| GET | `/api/style/song/:styleId` | 某曲风下的歌曲 |
-| GET | `/api/singer/list` | 歌手列表 |
-| GET | `/api/singer/song/:singerName` | 某歌手的歌曲 |
-| GET | `/api/album/list` | 专辑列表 |
-| GET | `/api/album/song/:albumName` | 某专辑的歌曲 |
+| 方法 | 路径                           | 说明           |
+| ---- | ------------------------------ | -------------- |
+| GET  | `/api/style/list`              | 曲风列表       |
+| GET  | `/api/style/song/:styleId`     | 某曲风下的歌曲 |
+| GET  | `/api/singer/list`             | 歌手列表       |
+| GET  | `/api/singer/song/:singerName` | 某歌手的歌曲   |
+| GET  | `/api/album/list`              | 专辑列表       |
+| GET  | `/api/album/song/:albumName`   | 某专辑的歌曲   |
 
 ### 音频流（无需鉴权，直接返回原始文件）
 
-| 方法 | 路径 | 说明 |
-| --- | --- | --- |
-| GET | `/api/audio/play/:id` | 播放音频 |
-| GET | `/api/audio/play/lrc/:id` | 获取歌词 |
+| 方法 | 路径                      | 说明     |
+| ---- | ------------------------- | -------- |
+| GET  | `/api/audio/play/:id`     | 播放音频 |
+| GET  | `/api/audio/play/lrc/:id` | 获取歌词 |
 
 ---
 
