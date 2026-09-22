@@ -102,9 +102,15 @@ export const useMusicStore = defineStore("music", () => {
     // 获取收藏歌曲
     async function getCollectSongs() {
         const res = await MusicApi.getCollectSongs()
-        songsList.value = res
+        songsList.value = res || []
         audioStore.setAudioList(res)
 
+    }
+
+    // 重置音乐列表数据（退出登录时调用）
+    function reset() {
+        playQueueList.value = []
+        songsList.value = []
     }
 
 
@@ -118,7 +124,8 @@ export const useMusicStore = defineStore("music", () => {
         getSongPlayList,
         setPlayQueueList,
         getCollectSongs,
-        collecHandler
+        collecHandler,
+        reset
     }
 
 
