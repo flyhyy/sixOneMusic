@@ -55,7 +55,11 @@ export const usePlayListStore = defineStore("playList", () => {
 
     }
 
-    getPlayList()
+    // 重置歌单数据（退出登录时调用）
+    const reset = () => {
+        playList.value = []
+        playListSongs.value = []
+    }
 
 
     return {
@@ -66,7 +70,8 @@ export const usePlayListStore = defineStore("playList", () => {
         addPlayList,
         delPlayList,
         addSongPlayList,
-        getSongPlayList
+        getSongPlayList,
+        reset
     }
 
 
